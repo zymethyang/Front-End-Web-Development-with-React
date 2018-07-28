@@ -6,7 +6,7 @@ import {
 import { Link } from 'react-router-dom';
 
 
-function renderDish(dish) {
+const renderDish = (dish) => {
     if (dish != null)
         return (
             <Card>
@@ -23,7 +23,7 @@ function renderDish(dish) {
         );
 }
 
-function renderComments(comments) {
+const renderComments = (comments) => {
     let view = null;
     view = comments.map((comment, index) => {
         return (
@@ -51,10 +51,10 @@ const DishDetail = (props) => {
             </div>
             <div className="row">
                 <div className="col-12 col-md-5 m-1">
-                    <RenderDish dish={props.dish} />
+                    {renderDish(props.dish)}
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    <RenderComments comments={props.comments} />
+                    {renderComments(props.comments)}
                 </div>
             </div>
         </div>

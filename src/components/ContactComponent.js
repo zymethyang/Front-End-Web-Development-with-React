@@ -1,5 +1,4 @@
 import React from 'react';
-import Contact from './ContactComponent';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { Link } from 'react-router-dom';
 
