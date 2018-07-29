@@ -69,9 +69,7 @@ class CommentForm extends Component {
     handleSubmit(values) {
         console.log('Current State is: ' + JSON.stringify(values));
         alert('Current State is: ' + JSON.stringify(values));
-        this.props.resetFeedbackForm;
-        console.log(this.props);
-        // event.preventDefault();
+        this.props.postComment(this.props.dishId, values.rating, values.name, values.comment);
     }
 
     render() {
@@ -161,7 +159,7 @@ const RenderDish = ({ dish }) => {
         );
 }
 
-const RenderComments = ({ comments, addComment, dishId }) => {
+const RenderComments = ({comments, postComment, dishId}) => {
     let view = null;
     view = comments.map((comment, index) => {
         return (
@@ -215,7 +213,7 @@ const DishDetail = (props) => {
                         addComment={props.addComment}
                         dishId={props.dish.id}
                     />
-                    <CommentForm dishId={props.dishId} addComment={props.addComment} resetFeedbackForm={props.resetFeedbackForm}/>
+                    <CommentForm dishId={props.dishId} postComment={props.postComment} resetFeedbackForm={props.resetFeedbackForm}/>
                 </div>
             </div>
         </div>
