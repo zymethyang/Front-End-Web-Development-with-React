@@ -4,7 +4,7 @@ import {
     CardTitle, Breadcrumb, BreadcrumbItem, ModalBody, ModalHeader, Modal, Col, Label, FormGroup, Button
 } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { Control, LocalForm, Errors } from 'react-redux-form';
+import { Control, Errors, Form, actions } from 'react-redux-form';
 import { Loading } from './LoadingComponent';
 
 class CommentForm extends Component {
@@ -66,7 +66,11 @@ class CommentForm extends Component {
     }
 
     handleSubmit(values) {
-        this.props.addComment(this.props.dishId, values.rating, values.name, values.comment);
+        console.log('Current State is: ' + JSON.stringify(values));
+        alert('Current State is: ' + JSON.stringify(values));
+        this.props.resetFeedbackForm;
+        console.log(this.props);
+        // event.preventDefault();
     }
 
     render() {
@@ -81,7 +85,7 @@ class CommentForm extends Component {
                 <Modal isOpen={this.state.isModalOpen} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Submit Comment</ModalHeader>
                     <ModalBody>
-                        <LocalForm onSubmit={(values) => this.handleSubmit(values)}>
+                        <Form model="feedback" onSubmit={(values) => this.handleSubmit(values)}>
                             <FormGroup row>
                                 <Label htmlFor="rating" md={12}>Rating</Label>
                                 <Col md={12}>
@@ -130,7 +134,7 @@ class CommentForm extends Component {
                                     </Button>
                                 </Col>
                             </FormGroup>
-                        </LocalForm>
+                        </Form>
                     </ModalBody>
                 </Modal>
             </div>
@@ -210,7 +214,7 @@ const DishDetail = (props) => {
                         addComment={props.addComment}
                         dishId={props.dish.id}
                     />
-                    <CommentForm dishId={props.dishId} addComment={props.addComment} />
+                    <CommentForm dishId={props.dishId} addComment={props.addComment} resetFeedbackForm={props.resetFeedbackForm}/>
                 </div>
             </div>
         </div>
