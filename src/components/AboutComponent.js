@@ -6,15 +6,17 @@ import { Link } from 'react-router-dom';
 function RenderLeader(props) {
     return props.leaders.map((leader, index) => {
         return (
-            <div className="row" key={index}>
-                <div className="col-2 col-md-2 m-2">
-                    <img src={leader.image} alt={leader.name} />
-                </div>
-                <div className="col-9 col-md-9 m-9">
-                    <h4 style={{ fontWeight: 'bold' }}>{leader.name}</h4>
-                    <p>{leader.designation}</p>
-                    <p>{leader.description}</p>
-                </div>
+            <div key={leader.id} className="col-12 mt-5">
+                <Media tag="li">
+                    <Media left middle>
+                        <Media object src={leader.image} alt={leader.name} />
+                    </Media>
+                    <Media body className="ml-5 mt-1">
+                        <Media heading>{leader.name}</Media>
+                        {leader.designation}
+                        <p className="mt-1">{leader.description}</p>
+                    </Media>
+                </Media>
             </div>
         );
     });
