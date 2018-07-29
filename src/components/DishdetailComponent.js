@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle, Breadcrumb, BreadcrumbItem
@@ -6,7 +6,7 @@ import {
 import { Link } from 'react-router-dom';
 
 
-const renderDish = (dish) => {
+const RenderDish = ({ dish }) => {
     if (dish != null)
         return (
             <Card>
@@ -23,7 +23,7 @@ const renderDish = (dish) => {
         );
 }
 
-const renderComments = (comments) => {
+const RenderComments = ({ comments }) => {
     let view = null;
     view = comments.map((comment, index) => {
         return (
@@ -51,15 +51,14 @@ const DishDetail = (props) => {
             </div>
             <div className="row">
                 <div className="col-12 col-md-5 m-1">
-                    {renderDish(props.dish)}
+                    <RenderDish dish={props.dish} />
                 </div>
                 <div className="col-12 col-md-5 m-1">
-                    {renderComments(props.comments)}
+                    <RenderComments comments={props.comments} />
                 </div>
             </div>
         </div>
     );
-
 }
 
 export default DishDetail;
